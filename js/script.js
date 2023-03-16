@@ -19,6 +19,9 @@ const pokemonRepository = (function () {
 	}
 	////////////////////////////////////////////////
 	function loadPokeListFromApi() {
+		// Fetch Pokemons from API
+		showLoadingMessage();
+
 		return fetch(apiUrl)
 			.then(function (response) {
 				return response.json();
@@ -30,14 +33,19 @@ const pokemonRepository = (function () {
 						detailsUrl: item.url,
 					};
 					add(pokemon);
+					hideLoadingMessage();
 				});
 			})
 			.catch(function (e) {
 				console.error(e);
+				hideLoadingMessage();
 			});
 	}
+
 	////////////////////////////////////////////////
 	function loadDetails(pokemon) {
+		// fetch pokemon detail from API
+		showLoadingMessage();
 		let url = pokemon.detailsUrl;
 		return fetch(url)
 			.then(function (response) {
@@ -48,18 +56,19 @@ const pokemonRepository = (function () {
 				pokemon.imageUrl = pokemonDetails.sprites.other.home.front_default;
 				pokemon.height = pokemonDetails.height;
 				pokemon.types = pokemonDetails.types;
+				hideLoadingMessage();
 			})
 			.catch(function (e) {
 				console.error(e);
+				hideLoadingMessage();
 			});
 	}
 	////////////////////////////////////////////////
 	function addListItem(pokemon) {
-		// Variables from HTML Elements:
+		// Variables from DOM Elements:
 		const pokemonHtmlList = document.querySelector(".pokemon-list");
 		const li = document.createElement("li");
 		const button = document.createElement("button");
-
 		// add CSS Class to button
 		button.classList.add("pokemon-button");
 
@@ -86,7 +95,7 @@ const pokemonRepository = (function () {
 	}
 	///////////////////////////////////////////////////////////////
 	function showDetails(pokemon) {
-		console.log(pokemon);
+		// shows details when Pokemon clicked on
 		loadDetails(pokemon).then(function () {
 			console.log(pokemon);
 		});
@@ -102,20 +111,24 @@ const pokemonRepository = (function () {
 		return foundPokemon;
 	}
 	////////////////////////////////////////////////////////////////
-	function showHTML(pokemonList) {
-		pokemonList.forEach(function (pokemon) {
-			pokemonRepository.addListItem(pokemon);
-		});
+	function showLoadingMessage() {
+		const messageLoading = document.querySelector(".message-loading");
+		messageLoading.classList.remove("hidden");
 	}
+	////////////////////////////////////////////////////////////////
+	function hideLoadingMessage() {
+		const messageLoading = document.querySelector(".message-loading");
+		messageLoading.classList.add("hidden");
+	}
+	////////////////////////////////////////////////////////////////
 
 	return {
 		add,
 		getAll,
 		loadPokeListFromApi,
+		loadDetails,
 		addListItem,
 		search,
-		showHTML,
-		loadDetails,
 	};
 })();
 //

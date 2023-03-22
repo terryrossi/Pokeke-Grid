@@ -187,6 +187,7 @@ const pokemonRepository = (function () {
 		messageLoading.classList.add("hidden");
 	}
 	////////////////////////////////////////////////////////////////
+	//////////   POINTER EVENTS FOR MOBILE DEVICES    //////////////
 
 	return {
 		add,

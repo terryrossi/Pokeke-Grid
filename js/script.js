@@ -131,9 +131,9 @@ const pokemonRepository = (function () {
 		modalName.classList.add("modal-h1");
 		modalName.innerText = pokemon.name;
 
-		const modalHeight = document.createElement("p");
+		const modalHeight = document.createElement("h4");
 		modalHeight.classList.add("modal-text");
-		modalHeight.innerText = pokemon.height;
+		modalHeight.innerText = `Height: ${pokemon.height} Inches`;
 
 		modalText.appendChild(modalName);
 		modalText.appendChild(modalHeight);

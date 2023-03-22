@@ -51,7 +51,7 @@ div {
 	padding: 10px;
 	/* Adds a 10px outer spacing to all sides */
 	/* margin: 10px 20px; */
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	border-radius: 5px;
 	/* Attributes describe: thickness, type, color */
 }

@@ -294,6 +294,7 @@ hr {
 	height: 350px;
 	display: flex;
 	align-items: center;
+	border-radius: 9px;
 }
 .modal-image {
 	width: 300px;
@@ -321,8 +322,9 @@ hr {
 
 button.modal-close {
 	align-self: flex-start;
-	margin-right: inherit;
-
+	/* margin-right: inherit; */
+	/* margin-left: auto; */
+	margin-right: 2px;
 	border: 0;
 	background: none;
 	color: #000000;

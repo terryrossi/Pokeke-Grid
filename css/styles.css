@@ -48,17 +48,17 @@ body {
 	/* font-family: "Roboto", sans-serif; */
 	/* font-family: "Gloock", serif; */
 	/* font-family: "Lato", sans-serif; */
-	font-family: "Playfair Display", serif;
+	font-family: 'Playfair Display', serif;
 	font-weight: var(--font-weight);
 	font-size: var(--font-size);
 }
 div {
 	/* background-color: var(--background-color-grid-item); */
 	/* Adds a 10px inner spacing to all sides */
-	padding: 10px;
+	padding: 1px;
 	/* Adds a 10px outer spacing to all sides */
 	/* margin: 10px 20px; */
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	border-radius: 5px;
 	/* Attributes describe: thickness, type, color */
 }
@@ -137,7 +137,7 @@ button,
 	text-decoration: none;
 	/*adds spacing to the button (this will be discussed more in-depth later) */
 	padding: 10px;
-	margin: 5px auto;
+	/* margin: 5px auto; */
 	border-radius: 3px;
 	/* gives the button a bottom border with a width of 2px, a type of solid, and a color in RGBA format */
 	border-bottom: 2px solid rgba(0, 0, 0, 0.3);
@@ -228,22 +228,22 @@ hr {
 
 	/* color: red; */
 }
-.pokemon-container {
+/* .pokemon__container {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1;
-}
-.pokemon-list {
-	grid-column-start: 2;
-	/* margin: 0px auto; */
-	/* text-align: center; */
-}
-.pokemon-list__item {
+} */
+/* .pokemon-list {
+	grid-column-start: 2; */
+/* margin: 0px auto; */
+/* text-align: center; */
+/* } */
+/* .pokemon-list__item {
 	list-style-type: none;
 	text-align: center;
-}
+} */
 .pokemon-button {
-	width: 150px;
+	width: 200px;
 }
 .message-loading {
 	position: fixed;
@@ -254,6 +254,84 @@ hr {
 	top: 0px;
 	right: 0px;
 }
+/*  */
+/* DISPLAY:GRID */
+
+/* Support for OLDER web browser versions (Replace Grid with inline-block*/
+/*  */
+.grid__item {
+	background-color: var(--background-color-dark); /* Dark BG to see the difference in old browser*/
+	display: inline-block;
+	width: 20%;
+	border-radius: 9px;
+	box-shadow: 1px 1px 10px 0px rgb(41, 39, 39);
+}
+/* Support for NEWER web browser versions */
+
+/* DISPLAY FOR OVER 1100px */
+
+@supports (display: grid) {
+	.pokemon__grid {
+		display: grid;
+		grid-template-columns: 20% 20% 20% 20% 20%; /* after testing 3 and 2 columns, 1 Column seems to be a better fit for my projects */
+		grid-template-rows: auto; /* DEFAULT VALUE */
+		/* grid-gap: 20px; */
+	}
+	.grid__item {
+		background-color: var(--background-color);
+		width: auto; /* Important to restore for use of grid vs inline-block */
+		min-height: auto; /* Default restored */
+		/* margin: 0 auto; Default restored */
+		border-radius: 5px;
+		margin: 5px auto;
+	}
+}
+
+/* DISPLAY FOR 800px to 1100px */
+@media all and (min-width: 800px) and (max-width: 1100px) {
+	.pokemon-button {
+		width: 150px;
+	}
+}
+
+/* DISPLAY FOR 625px to 800px */
+
+@media all and (min-width: 625px) and (max-width: 800px) {
+	.pokemon__grid {
+		display: grid;
+		grid-template-columns: 25% 25% 25% 25%;
+		grid-template-rows: auto;
+	}
+	.pokemon-button {
+		width: 150px;
+	}
+}
+
+/* DISPLAY FOR 400px to 625px */
+
+@media all and (min-width: 400px) and (max-width: 625px) {
+	.pokemon__grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: auto;
+	}
+	.pokemon-button {
+		width: 150px;
+	}
+}
+
+/* DISPLAY FOR UNDER 400px */
+
+@media all and (max-width: 400px) {
+	.pokemon__grid {
+		grid-template-columns: 1fr;
+		/* grid-gap: 10px; */
+	}
+	.pokemon-button {
+		width: 150px;
+	}
+}
+
 .hidden {
 	display: none;
 }

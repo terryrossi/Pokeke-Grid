@@ -3,13 +3,13 @@
 // Initialize list of Pokemons using IIFE to protect variables
 
 // DOM Elements
-const modalContainer = document.querySelector("#modal-container");
+const modalContainer = document.querySelector('#modal-container');
 
 // DATA...
 const pokemonRepository = (function () {
 	const pokemonList = [];
 	// let pokemon = {};
-	let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
+	let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 	// FUNCTIONS...
 
@@ -69,26 +69,30 @@ const pokemonRepository = (function () {
 	////////////////////////////////////////////////
 	function addListItem(pokemon) {
 		// Variables from DOM Elements:
-		const pokemonHtmlList = document.querySelector(".pokemon-list");
-		const li = document.createElement("li");
-		const button = document.createElement("button");
+		const pokemonHtmlList = document.querySelector('.pokemon__grid');
+		const item = document.createElement('div');
+		item.classList.add('grid__item');
+		const button = document.createElement('button');
 		// add CSS Class to button
-		button.classList.add("pokemon-button");
+		button.classList.add('pokemon-button');
 
 		// add Pokemon name to button text
+		console.log(pokemon);
+		console.log(button);
+		console.log(item);
 		button.innerText = pokemon.name;
 
 		// add eventListener to the Button
-		addEventListenerToButton(button, "click", pokemon);
+		addEventListenerToButton(button, 'click', pokemon);
 
 		// insert the button into the line element
-		li.appendChild(button);
+		item.appendChild(button);
 
 		// add Class to line element
-		li.classList.add("pokemon-list__item");
-
+		// li.classList.add("pokemon-list__item");
+		console.log(pokemonHtmlList);
 		// add the line element into the list element
-		pokemonHtmlList.appendChild(li);
+		pokemonHtmlList.appendChild(item);
 	}
 	///////////////////////////////////////////////////////////////
 	function addEventListenerToButton(button, type, pokemon) {
@@ -105,34 +109,34 @@ const pokemonRepository = (function () {
 	}
 	///////////////////////////////////////////////////////////////
 	function showModal(pokemon) {
-		modalContainer.innerHTML = "";
+		modalContainer.innerHTML = '';
 
 		// Add Modal
-		const modal = document.createElement("div");
-		modal.classList.add("modal");
+		const modal = document.createElement('div');
+		modal.classList.add('modal');
 
 		// Add Modal Items
-		const modalCloseButton = document.createElement("button");
-		modalCloseButton.classList.add("modal-close");
-		modalCloseButton.innerText = "close";
+		const modalCloseButton = document.createElement('button');
+		modalCloseButton.classList.add('modal-close');
+		modalCloseButton.innerText = 'close';
 
-		modalCloseButton.addEventListener("click", () => {
+		modalCloseButton.addEventListener('click', () => {
 			// e.preventDefault();
 			hideModal();
 		});
-		const modalImage = document.createElement("img");
-		modalImage.classList.add("modal-image");
+		const modalImage = document.createElement('img');
+		modalImage.classList.add('modal-image');
 		modalImage.src = pokemon.imageUrl;
 
-		const modalText = document.createElement("div");
-		modalText.classList.add("modal-text");
+		const modalText = document.createElement('div');
+		modalText.classList.add('modal-text');
 
-		const modalName = document.createElement("h1");
-		modalName.classList.add("modal-h1");
+		const modalName = document.createElement('h1');
+		modalName.classList.add('modal-h1');
 		modalName.innerText = pokemon.name;
 
-		const modalHeight = document.createElement("h4");
-		modalHeight.classList.add("modal-text");
+		const modalHeight = document.createElement('h4');
+		modalHeight.classList.add('modal-text');
 		modalHeight.innerText = `Height: ${pokemon.height} Inches`;
 
 		modalText.appendChild(modalName);
@@ -144,22 +148,22 @@ const pokemonRepository = (function () {
 		modal.appendChild(modalCloseButton);
 		modalContainer.appendChild(modal);
 
-		modalContainer.classList.add("is-visible");
+		modalContainer.classList.add('is-visible');
 	}
 	///////////////////////////////////////////////////////////////
 	function hideModal() {
-		modalContainer.classList.remove("is-visible");
+		modalContainer.classList.remove('is-visible');
 	}
 	///////////////////////////////////////////////////////////////
 	// Escape Key Close the Modal
-	window.addEventListener("keydown", (e) => {
-		if (e.key === "Escape" && modalContainer.classList.contains("is-visible")) {
+	window.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
 			hideModal();
 		}
 	});
 	///////////////////////////////////////////////////////////////
 	// Click outside of modal Closes Modal
-	modalContainer.addEventListener("click", (event) => {
+	modalContainer.addEventListener('click', (event) => {
 		// event.preventDefault();
 		const target = event.target;
 		if (target === modalContainer) {
@@ -178,13 +182,13 @@ const pokemonRepository = (function () {
 	}
 	////////////////////////////////////////////////////////////////
 	function showLoadingMessage() {
-		const messageLoading = document.querySelector(".message-loading");
-		messageLoading.classList.remove("hidden");
+		const messageLoading = document.querySelector('.message-loading');
+		messageLoading.classList.remove('hidden');
 	}
 	////////////////////////////////////////////////////////////////
 	function hideLoadingMessage() {
-		const messageLoading = document.querySelector(".message-loading");
-		messageLoading.classList.add("hidden");
+		const messageLoading = document.querySelector('.message-loading');
+		messageLoading.classList.add('hidden');
 	}
 	////////////////////////////////////////////////////////////////
 	//////////   POINTER EVENTS FOR MOBILE DEVICES    //////////////
